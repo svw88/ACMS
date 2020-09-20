@@ -1,0 +1,36 @@
+<mat-toolbar color="primary">
+  <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="sidenav.toggle()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>Site Designer</span>
+  <span class="spacer"></span>
+  <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon" [routerLink]="['/main/Home']">
+    <mat-icon>public</mat-icon>
+  </button>
+</mat-toolbar>
+<mat-sidenav-container class="side-nav">
+  <mat-sidenav class="p-5" #sidenav mode="side" [(opened)]="opened">
+    <div>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Page" [(ngModel)]="pageName">
+      </mat-form-field>
+      <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="addPage(pageName)">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+    <div *ngFor="let page of designerService.pages">
+      <button mat-button [routerLink]="[{outlets: {'designer': ['page', page.name]}}]">
+        {{page.name}}
+      </button>
+      <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="deletePage(page.name)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <router-outlet name="designer"></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+

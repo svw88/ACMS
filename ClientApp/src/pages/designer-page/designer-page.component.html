@@ -1,0 +1,21 @@
+<div>
+  <div id="boundary" class="design-boundary">
+
+    <div class="move-box" cdkDragBoundary=".design-boundary" cdkDrag (cdkDragEnded)="drop($event)" [cdkDragFreeDragPosition]="dragPosition">
+     
+        <component-base class="no-events"></component-base>
+      
+
+    </div>
+
+
+  </div>
+
+  <div class="item-bar">
+    <button mat-button class="w-100" aria-label="Example icon-button with menu icon">
+      NavBarHorizontal
+    </button>
+  </div>
+</div>
+
+
