@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { CdkDrag} from '@angular/cdk/drag-drop';
+import { CdkDrag } from '@angular/cdk/drag-drop';
 import { DesignerService } from '../../services/designer.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 /**
  * @title Drag&Drop connected sorting
@@ -11,32 +11,41 @@ import { Router } from '@angular/router';
 })
 export class MainComponent implements OnInit {
 
-  dragPosition = { x: 0, y: 0 };
-  constructor(public designerService: DesignerService, public router: Router) {
-   
-   
+  route: string;
+  page: Page;
+  constructor(public designerService: DesignerService, public activatedRoute: ActivatedRoute) {
+
+
   }
 
 
   ngOnInit() {
-    window.addEventListener('resize', () =>
-    {
+    this.activatedRoute.paramMap.subscribe(params => {
+
+      this.route = params.get('name');
+
+      this.page = this.designerService.pages.find(x => `${x.name}` === this.route);
       const parent = document.getElementById('boundary-d');
-      const page = this.designerService.pages[0];
-      if (page) {
-        this.dragPosition = {
-          x: parent.clientWidth * page.items[0].x,
-          y: parent.clientHeight * page.items[0].y
-        };
+      for (let item of this.page.items) {
+        item.dragPosition = { x: 0, y: 0 };
+        item.dragPosition.x = item.x * parent.clientWidth;
+        item.dragPosition.y = item.y * parent.clientHeight;
+      }
+
+    });
+
+    window.addEventListener('resize', () => {
+      this.page = this.designerService.pages.find(x => `${x.name}` === this.route);
+      const parent = document.getElementById('boundary-d');
+      for (let item of this.page.items) {
+        item.dragPosition = { x: 0, y: 0 };
+        item.dragPosition.x = item.x * parent.clientWidth;
+        item.dragPosition.y = item.y * parent.clientHeight;
       }
     });
-    const parent = document.getElementById('boundary-d');
-    const page = this.designerService.pages[0];
-    if (page) {
-      this.dragPosition = {
-        x: parent.clientWidth * page.items[0].x,
-        y: parent.clientHeight * page.items[0].y
-      };
-    }
+
+
+
+
   }
 }

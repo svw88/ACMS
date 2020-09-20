@@ -1,21 +1,23 @@
-<div>
-  <div id="boundary" class="design-boundary">
 
-    <div class="move-box" cdkDragBoundary=".design-boundary" cdkDrag (cdkDragEnded)="drop($event)" [cdkDragFreeDragPosition]="dragPosition">
-     
-        <component-base class="no-events"></component-base>
-      
+<div id="boundary" class="design-boundary">
 
-    </div>
+  <div *ngFor="let item of page.items" class="move-box" cdkDragBoundary=".design-boundary" cdkDrag (cdkDragEnded)="drop($event,item)" [cdkDragFreeDragPosition]="item.dragPosition">
 
-
-  </div>
-
-  <div class="item-bar">
-    <button mat-button class="w-100" aria-label="Example icon-button with menu icon">
-      NavBarHorizontal
+    <component-base class="no-events"></component-base>
+    <button style="top: 20%;position:absolute; right: 1%" mat-icon-button class="example-icon" aria-label="Example icon-button with share icon" (click)="deleteItem(item)">
+      <mat-icon>delete</mat-icon>
     </button>
+
   </div>
+
+
+</div>
+
+
+<div class="item-bar">
+  <button mat-button class="w-100" aria-label="Example icon-button with menu icon" (click)="addItem('NavBarHorizontal')">
+    NavBarHorizontal
+  </button>
 </div>
 
 

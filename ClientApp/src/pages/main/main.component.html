@@ -1,6 +1,6 @@
 <div>
   <div id="boundary-d" class="display-boundary">
-    <div cdkDragBoundary=".display-boundary" cdkDrag [cdkDragFreeDragPosition]="dragPosition" [cdkDragDisabled]="true" >
+    <div *ngFor="let item of page.items" cdkDragBoundary=".display-boundary" cdkDrag [cdkDragFreeDragPosition]="item.dragPosition" [cdkDragDisabled]="true" >
       <component-base></component-base>
 
     </div>
