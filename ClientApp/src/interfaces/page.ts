@@ -7,7 +7,7 @@ export interface Item {
   id: number,
   x: number,
   y: number,
-  type: 'NavBarComponent',
+  type: 'nav-bar-horizontal',
   settings: { [id: string]: string },
   dragPosition?: {
     x: number,

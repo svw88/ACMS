@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CdkDrag } from '@angular/cdk/drag-drop';
 import { DesignerService } from '../../services/designer.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Page } from '../../interfaces/page';
 
 /**
  * @title Drag&Drop connected sorting

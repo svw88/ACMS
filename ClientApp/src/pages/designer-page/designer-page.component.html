@@ -3,7 +3,7 @@
 
   <div *ngFor="let item of page.items" class="move-box" cdkDragBoundary=".design-boundary" cdkDrag (cdkDragEnded)="drop($event,item)" [cdkDragFreeDragPosition]="item.dragPosition">
 
-    <component-base class="no-events"></component-base>
+    <component-base class="no-events" [component]="item.type"></component-base>
     <button style="top: 20%;position:absolute; right: 1%" mat-icon-button class="example-icon" aria-label="Example icon-button with share icon" (click)="deleteItem(item)">
       <mat-icon>delete</mat-icon>
     </button>

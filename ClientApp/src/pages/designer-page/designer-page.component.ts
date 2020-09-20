@@ -50,7 +50,7 @@ export class DesignerPageComponent implements OnInit {
 
   addItem(name: string) {
 
-    let item: Item = { id: this.designerService.pages.find(x => `${x.name}` === this.route).items.length + 1, x: 0, y: 0, settings: {}, type: "NavBarComponent" };
+    let item: Item = { id: this.designerService.pages.find(x => `${x.name}` === this.route).items.length + 1, x: 0, y: 0, settings: {}, type: "nav-bar-horizontal" };
     this.designerService.pages.find(x => `${x.name}` === this.route).items.push(item);
     this.page = this.designerService.pages.find(x => `${x.name}` === this.route);
 
