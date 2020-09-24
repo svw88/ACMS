@@ -1,0 +1,15 @@
+<div *ngFor="let item of keys(data.settings)">
+  <mat-form-field *ngIf="!data.settings[item].options || data.settings[item].options.length < 1" appearance="fill" class="w-100">
+    <mat-label>{{item}}</mat-label>
+    <input matInput [type]="'text'" [(ngModel)]="data.settings[item].value">
+  </mat-form-field>
+
+  <mat-form-field *ngIf="data.settings[item].options && data.settings[item].options.length > 0" appearance="fill" class="w-100">
+    <mat-label>{{item}}</mat-label>
+    <mat-select [(value)]="data.settings[item].value">
+      <mat-option *ngFor="let option of data.settings[item].options" [value]="option">
+        {{option}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>

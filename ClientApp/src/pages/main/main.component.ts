@@ -22,7 +22,7 @@ export class MainComponent implements OnInit {
 
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe(params => {
-
+      
       this.route = params.get('name');
 
       this.page = this.designerService.pages.find(x => `${x.name}` === this.route);

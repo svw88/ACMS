@@ -19,6 +19,10 @@ import { FormsModule } from '@angular/forms';
 import { DesignerService } from '../services/designer.service';
 import { MainComponent } from '../pages/main/main.component';
 import { BaseComponent } from '../components/base/base.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { SettingsComponent } from '../pages/settings/settings.component';
+import { MatOptionModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
 
 
 @NgModule({
@@ -27,7 +31,11 @@ import { BaseComponent } from '../components/base/base.component';
     DesignerComponent,
     DesignerPageComponent,
     MainComponent,
-    BaseComponent
+    BaseComponent,
+    SettingsComponent
+  ],
+  entryComponents: [
+    SettingsComponent
   ],
   imports: [
     BrowserModule,
@@ -41,6 +49,9 @@ import { BaseComponent } from '../components/base/base.component';
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
+    MatDialogModule,
+    MatOptionModule,
+    MatSelectModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: false })
   ],
   providers: [

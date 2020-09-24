@@ -1,7 +1,9 @@
+import { CommonModule } from '@angular/common';
 import { Component, NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { Setting } from '../../interfaces/page';
 
 @Component({
     selector: 'nav-bar-horizontal',
@@ -15,14 +17,13 @@ export class NavBarHorizontalComponent {
 
   }
 
-  log() {
-    console.log('test');
-  }
+  settings: Setting;
+
 }
 
 @NgModule({
   declarations: [NavBarHorizontalComponent],
-  imports: [MatToolbarModule, MatIconModule, MatButtonModule]
+  imports: [MatToolbarModule, MatIconModule, MatButtonModule, CommonModule]
 })
 class NavBarHorizontalModule {
 

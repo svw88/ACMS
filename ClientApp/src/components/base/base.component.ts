@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, ComponentFactoryResolver, Injector, Input, ViewChild, ViewContainerRef } from '@angular/core';
+import { ComponentType, Item } from '../../interfaces/page';
 
 @Component({
     selector: 'component-base',
@@ -9,8 +10,7 @@ import { AfterViewInit, Component, ComponentFactoryResolver, Injector, Input, Vi
 export class BaseComponent implements AfterViewInit {
 
   @ViewChild('baseContainer', { read: ViewContainerRef }) baseContainer: ViewContainerRef;
-
-  @Input() component: 'nav-bar-horizontal';
+  @Input() item: Item;
     /** base ctor */
   constructor(private cfr: ComponentFactoryResolver,
   private injector: Injector) {
@@ -18,12 +18,13 @@ export class BaseComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    switch (this.component) {
-      case "nav-bar-horizontal":
+    switch (this.item.type) {
+      case ComponentType.NavBarHorizontalComponent:
         import('../nav-bar-horizontal/nav-bar-horizontal.component').then((x) => {
           const { NavBarHorizontalComponent } = x;
           const factory = this.cfr.resolveComponentFactory(NavBarHorizontalComponent);
-          this.baseContainer.createComponent(factory, null, this.injector);
+          const comp = this.baseContainer.createComponent(factory, null, this.injector);
+          comp.instance.settings = this.item.settings;
         });
         break;
       default:
